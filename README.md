@@ -1,6 +1,6 @@
-# Sunbeam extension template
+# Sunbeam metaQUAST extension
 
-This is a metaQUAST extension to the [Sunbeam pipeline](https://github.com/sunbeam-labs/sunbeam). 
+This is a [metaQUAST](http://quast.sourceforge.net/metaquast) extension to the [Sunbeam pipeline](https://github.com/sunbeam-labs/sunbeam). 
 
  - `sbx_metaquast_env.yml` specifies the extension's dependencies, which is the QUAST software
  - `config.yml` contains configuration options (just the number of threads)
