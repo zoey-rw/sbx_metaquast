@@ -1,6 +1,7 @@
 rule run_metaquast:
     input:
-        contigs=str(ASSEMBLY_FP/'contigs'/'{sample}-contigs.fa')	
+        contigs = expand(str(ASSEMBLY_FP/'contigs'/'{sample}-contigs.fa'),
+               sample=Samples.keys())
     output:
         str(Cfg['all']['output_fp']/'assembly/metaquast_results/report.html')
     params:
@@ -9,9 +10,6 @@ rule run_metaquast:
         "sbx_metaquast_env.yml"
     threads: Cfg['sbx_metaquast']['threads']
     shell:
-        "python quast/metaquast.py -t {threads} {input.contigs} -o {params}"
-
-rule metaquast:
-    input:
-        expand(str(ASSEMBLY_FP/'contigs'/'{sample}'),
-               sample=Samples.keys())
+        """
+        python metaquast.py -t {threads} {input.contigs} -o {params}
+        """
