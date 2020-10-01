@@ -1,15 +1,16 @@
+rule all_metaquast:
+    input:
+        expand(str(Cfg['all']['output_fp']/'assembly/metaquast_results/{sample}/'),
+               sample=Samples.keys())
+
 rule run_metaquast:
     input:
-        contigs = expand(str(ASSEMBLY_FP/'contigs'/'{sample}-contigs.fa'),
-               sample=Samples.keys())
+        str(ASSEMBLY_FP/'contigs'/'{sample}-contigs.fa')
     output:
-        str(Cfg['all']['output_fp']/'assembly/metaquast_results/report.html')
-    params:
-        str(Cfg['all']['output_fp']/'assembly/metaquast_results/')
+        str(Cfg['all']['output_fp']/'assembly/metaquast_results/{sample}/')
     conda:
         "sbx_metaquast_env.yml"
     threads: Cfg['sbx_metaquast']['threads']
     shell:
-        """
-        python metaquast.py -t {threads} {input.contigs} -o {params}
-        """
+        "python /projectnb/talbot-lab-data/NEFI_data/metagenomes/analysis_2020/sunbeam-stable/extensions/sbx_metaquast/quast/metaquast.py -t {threads} {input} -o {output}"
+
