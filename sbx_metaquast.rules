@@ -14,5 +14,5 @@ rule run_metaquast:
         "sbx_metaquast_env.yml"
     threads: Cfg['sbx_metaquast']['threads']
     shell:
-        "python /projectnb/talbot-lab-data/zrwerbin/metagenomes_raw/test_pipeline/sunbeam/extensions/sbx_metaquast/quast/metaquast.py -t {threads} {input} -o {output}"
+        "python /projectnb/talbot-lab-data/zrwerbin/metagenomes_raw/test_pipeline/quast-5.0/metaquast.py -t {threads} {input} -o {output}"
 
